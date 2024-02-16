@@ -1,8 +1,9 @@
 import Input from "@/components/UI/Input";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import React from "react";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
   const { push, query } = useRouter();
@@ -39,11 +40,19 @@ const Login = () => {
           <Input id={"password"} label={"Password"} type={"password"} />
           <button
             type="submit"
-            className="bg-blue-500 text-white py-2 rounded-md hover:bg-blue-700"
+            className="bg-blue-500 text-white  px-4 py-2 rounded-md hover:bg-blue-700"
           >
             Login
           </button>
         </form>
+        <button
+          type="button"
+          onClick={() => signIn("google", { callbackUrl, redirect: false })}
+          className="bg-slate-300 text-slate-700 text-base font-semibold px-4 py-2 rounded-md w-full mt-3 hover:text-slate-950 hover:bg-slate-400"
+        >
+          Login With Google
+          <FcGoogle className="inline-block ml-2 text-3xl" />
+        </button>
         <h3 className="text-center text-lg mt-3">
           Don{"'"}t have an account?{" "}
           <Link href={"/auth/register"} className="text-blue-500">
