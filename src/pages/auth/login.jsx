@@ -23,7 +23,7 @@ const Login = () => {
         form.reset();
         push(callbackUrl);
       } else {
-        console.log(response);
+        console.log(response.error);
       }
     } catch (error) {
       console.log(error);

@@ -1,4 +1,4 @@
-import { signUp } from "@/lib/firebase/service"
+import { signUp } from "@/services/auth"
 
 export default async function handler(req, res) {
     if (req.method === 'POST') {

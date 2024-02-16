@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <>
       <div className="fixed top-0 w-full bg-none flex justify-between my-2 px-10 items-center  z-10">
-        <Image src={"/logo.png"} alt="logo" width={50} height={50} />
+        {/* <Image src={"/logo.png"} alt="logo" width={50} height={50} />
         <div>
           <ul className="flex flex-row gap-4">
             <li>Home</li>
@@ -16,7 +16,7 @@ const Navbar = () => {
             <li>Featured</li>
             <li>Recommended</li>
           </ul>
-        </div>
+        </div> */}
         <div className="flex flex-row items-center border px-10 py-1.5">
           <input
             type="text"
