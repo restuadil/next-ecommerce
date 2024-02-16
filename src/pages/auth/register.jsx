@@ -1,4 +1,5 @@
 import Input from "@/components/UI/Input";
+import authServices from "@/services/auth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -18,13 +19,7 @@ const Page = () => {
       phone: form.phone.value,
       password: form.password.value,
     };
-    const result = await fetch("/api/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const result = await authServices.registerAccount(data);
 
     if (result.status === 200) {
       setIsLoading(true);
