@@ -11,6 +11,8 @@ export async function signUp(userData, callback) {
             userData.role = "member"
         }
         userData.password = await bcrypt.hash(userData.password, 10)
+        userData.created_At = new Date()
+        userData.updated_At = new Date()
         await addData("users", userData, (result) => {
             callback(result)
         })
