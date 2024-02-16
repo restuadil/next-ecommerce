@@ -32,7 +32,7 @@ const Navbar = () => {
               data ? signOut() : signIn();
             }}
           >
-            {data ? "Sign Out" : "Sign In"}
+            {data ? "Logout" : "Login"}
           </button>
         </div>
       </div>
