@@ -1,7 +1,8 @@
-const Input = ({ id, type, label, onChange }) => {
+const Input = ({ id, type, label, onChange, required }) => {
   return (
     <div className="relative">
       <input
+        required={required}
         id={id}
         type={type}
         name={id}

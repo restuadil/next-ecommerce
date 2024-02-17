@@ -1,7 +1,7 @@
 import AdminLayout from "@/Layout/AdminLayout";
 import React from "react";
 
-const AdminProductsPage = () => {
+const AdminUsersPage = () => {
   return (
     <>
       <AdminLayout></AdminLayout>
@@ -9,4 +9,4 @@ const AdminProductsPage = () => {
   );
 };
 
-export default AdminProductsPage;
+export default AdminUsersPage;

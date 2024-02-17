@@ -1,4 +1,5 @@
-import AuthLayouth from "@/Layout/AuthLayouth";
+import AuthLayout from "@/Layout/AuthLayout";
+import Button from "@/components/UI/Button";
 import Input from "@/components/UI/Input";
 import authServices from "@/services/auth";
 import { useRouter } from "next/navigation";
@@ -31,7 +32,7 @@ const Page = () => {
     }
   };
   return (
-    <AuthLayouth
+    <AuthLayout
       title={"Register"}
       redirect={"Login"}
       link={"/auth/login"}
@@ -39,22 +40,32 @@ const Page = () => {
       error={error}
     >
       <form className="flex flex-col w-1/3" onSubmit={handleSubmit}>
-        <Input id={"email"} label={"Email"} type={"email"} />
-        <Input id={"fullname"} label={"FullName"} type={"text"} />
-        <Input id={"phone"} label={"Phone"} type={"text"} />
-        <Input id={"password"} label={"Password"} type={"password"} />
-        <button
+        <Input required={true} id={"email"} label={"Email"} type={"email"} />
+        <Input
+          required={true}
+          id={"fullname"}
+          label={"FullName"}
+          type={"text"}
+        />
+        <Input required={true} id={"phone"} label={"Phone"} type={"text"} />
+        <Input
+          required={true}
+          id={"password"}
+          label={"Password"}
+          type={"password"}
+        />
+        <Button
           type="submit"
-          className="bg-blue-500 text-white py-2 rounded-md hover:bg-blue-700"
+          className="mt-2 rounded-md py-1.5 w-full text-white"
         >
           {isLoading ? (
             <span className="loading loading-dots loading-md"></span>
           ) : (
             "Register"
           )}
-        </button>
+        </Button>
       </form>
-    </AuthLayouth>
+    </AuthLayout>
   );
 };
 
