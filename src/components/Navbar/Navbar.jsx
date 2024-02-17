@@ -7,7 +7,7 @@ const Navbar = () => {
   const { data } = useSession();
   return (
     <>
-      <div className="fixed top-0 w-full bg-none flex justify-between my-2 px-10 items-center  z-10">
+      <div className="sticky top-0 w-full bg-none flex justify-between mb-5 mt-1 px-10 items-center  z-10">
         <Image src={"/logo.png"} alt="logo" width={50} height={50} />
         <div>
           <ul className="flex flex-row gap-4">
