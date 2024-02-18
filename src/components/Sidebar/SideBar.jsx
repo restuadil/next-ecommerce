@@ -3,36 +3,14 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 
-const SideBar = () => {
-  const sideBarItem = [
-    {
-      name: "Dashboard",
-      link: "/admin",
-      icon: "bxs-dashboard",
-    },
-    {
-      name: "Products",
-      link: "/admin/products",
-      icon: "bx bx-package",
-    },
-    {
-      name: "Orders",
-      link: "/admin/order",
-      icon: "bx bx-cart",
-    },
-    {
-      name: "Users",
-      link: "/admin/users",
-      icon: "bx bx-user",
-    },
-  ];
+const SideBar = ({ sideBarItem, title }) => {
   const { pathname } = useRouter();
   return (
     <>
       <div className="w-[250px] bg-black h-screen text-white py-5 flex flex-col justify-between">
         <div>
           <h1 className="text-center font-semibold text-3xl mb-2 px-8">
-            Admin Panel
+            {title}
           </h1>
           <ul className="mt-10 px-2 flex flex-col gap-2">
             {sideBarItem.map((item) => (
@@ -43,8 +21,8 @@ const SideBar = () => {
                   pathname === item.link ? "bg-white text-black" : ""
                 }  p-2 hover:bg-white hover:text-black`}
               >
-                <i className={`bx ${item.icon}`}></i>
-                <span>{item.name}</span>
+                <i className={`bx ${item.icon} text-2xl`}></i>
+                <span className="text-xl">{item.name}</span>
               </Link>
             ))}
           </ul>

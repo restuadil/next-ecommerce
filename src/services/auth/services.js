@@ -34,6 +34,9 @@ export async function loginWithGoogle(data, callback) {
         callback(user[0])
     } else {
         data.role = "member"
+        data.password = ""
+        data.created_At = new Date()
+        data.updated_At = new Date()
         await addData("users", data, (result) => {
             if (result) {
                 callback(result)
