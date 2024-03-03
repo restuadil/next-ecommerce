@@ -5,7 +5,7 @@ const UserModal = ({
   onClose,
   modalType,
   selectedUser,
-  onConfirmDelete,
+  onDeleteUser,
   onEditUser,
 }) => {
   const modalRef = useRef(null);
@@ -27,6 +27,10 @@ const UserModal = ({
     onEditUser(updatedUserData);
   };
 
+  const handleDeleteUser = (userId) => {
+    onDeleteUser(userId);
+  };
+
   return (
     <>
       {showModal && (
@@ -34,11 +38,7 @@ const UserModal = ({
           className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 flex justify-center items-center"
           onClick={handleCloseModal}
         >
-          <div
-            ref={modalRef}
-            className="bg-white py-5 px-10 rounded-lg w-max"
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div ref={modalRef} className="bg-white py-5 px-10 rounded-lg w-max">
             <h1 className="text-3xl font-semibold mb-4 text-center">
               {modalType === "edit" ? "Edit User" : "Delete User"}
             </h1>
@@ -106,7 +106,7 @@ const UserModal = ({
                 <div className="flex justify-between mt-4 ">
                   <button
                     className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-                    onClick={onConfirmDelete}
+                    onClick={() => handleDeleteUser(selectedUser.id)}
                   >
                     Delete
                   </button>

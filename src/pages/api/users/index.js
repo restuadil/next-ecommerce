@@ -1,4 +1,4 @@
-import { retrieveData, updateData } from "@/lib/firebase/service";
+import { deleteData, retrieveData, updateData } from "@/lib/firebase/service";
 
 export default async function handler(req, res) {
 
@@ -23,6 +23,23 @@ export default async function handler(req, res) {
                     statusCode: 200,
                     message: "success",
 
+                })
+            } else {
+                res.status(400).json({
+                    status: false,
+                    statusCode: 400,
+                    message: "failed",
+                })
+            }
+        })
+    } else if (req.method === "DELETE") {
+        const { id } = req.body
+        await deleteData("users", id, (result) => {
+            if (result) {
+                res.status(200).json({
+                    status: true,
+                    statusCode: 200,
+                    message: "success",
                 })
             } else {
                 res.status(400).json({

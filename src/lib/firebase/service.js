@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDoc, getDocs, getFirestore, query, updateDoc, where } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, query, updateDoc, where } from "firebase/firestore";
 import app from "./init";
 
 const firestore = getFirestore(app);
@@ -36,6 +36,17 @@ export async function addData(collectionName, data, callback) {
 export async function updateData(collectionName, id, data, callback) {
     const docRef = doc(firestore, collectionName, id);
     await updateDoc(docRef, data)
+        .then(() => {
+            callback(true)
+        }).catch(() => {
+            callback(false)
+        })
+}
+
+
+export async function deleteData(collectionName, id, callback) {
+    const docRef = doc(firestore, collectionName, id);
+    await deleteDoc(docRef)
         .then(() => {
             callback(true)
         }).catch(() => {

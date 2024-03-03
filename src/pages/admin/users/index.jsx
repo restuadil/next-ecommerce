@@ -36,7 +36,6 @@ const AdminUsersPage = () => {
             return user;
           });
         });
-        // Tutup modal
         setShowModal(false);
       } else {
         console.error("Gagal mengedit pengguna.");
@@ -45,15 +44,25 @@ const AdminUsersPage = () => {
       console.error("Terjadi kesalahan:", error);
     }
   };
+
   const handleAction = (user, type) => {
     setSelectedUser(user);
     setModalType(type);
     setShowModal(true);
   };
 
-  const handleConfirmDelete = () => {
-    // Lakukan logika penghapusan pengguna di sini
-    console.log("Menghapus pengguna:", selectedUser);
+  const handleDeleteUser = async (id) => {
+    try {
+      const response = await userServices.deleteUser(id);
+      console.log(response);
+      if (response.status === 200) {
+        setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
+      } else {
+        console.error("Gagal menghapus pengguna.");
+      }
+    } catch (error) {
+      console.error("Terjadi kesalahan:", error);
+    }
     setShowModal(false);
   };
 
@@ -105,7 +114,7 @@ const AdminUsersPage = () => {
           onClose={() => setShowModal(false)}
           modalType={modalType}
           selectedUser={selectedUser}
-          onConfirmDelete={handleConfirmDelete}
+          onDeleteUser={handleDeleteUser}
           onEditUser={handleEditUser}
         />
       </div>
