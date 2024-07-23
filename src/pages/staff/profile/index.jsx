@@ -1,6 +1,5 @@
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -8,6 +7,11 @@ const UserProfile = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
   const currentPath = router.pathname;
+  const handleSignOut = () => {
+    signOut({
+      callbackUrl: "/auth/login", // Redirect to login page after sign out
+    });
+  };
   return (
     <>
       {status === "loading" ? (
@@ -107,6 +111,13 @@ const UserProfile = () => {
                   />
                 </div>
               </form>
+              <button
+                type="button"
+                onClick={handleSignOut}
+                className=" py-2 text-whiteblock font-semibold text-xl text-center block mx-auto bg-slate-800 text-white px-10 rounded-md hover:text-slate-400"
+              >
+                Logout
+              </button>
             </div>
           </div>
         </div>
