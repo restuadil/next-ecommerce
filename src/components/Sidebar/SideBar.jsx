@@ -4,10 +4,15 @@ import { useRouter } from "next/router";
 import React from "react";
 
 const SideBar = ({ sideBarItem, title }) => {
+  const handleSignOut = () => {
+    signOut({
+      callbackUrl: "/auth/login", // Redirect to login page after sign out
+    });
+  };
   const { pathname } = useRouter();
   return (
     <>
-      <div className="w-[250px] bg-black h-screen text-white py-5 flex flex-col justify-between">
+      <div className="w-[200px] bg-black h-screen text-white py-5 flex flex-col justify-between fixed">
         <div>
           <h1 className="text-center font-semibold text-3xl mb-2 px-8">
             {title}
@@ -29,7 +34,7 @@ const SideBar = ({ sideBarItem, title }) => {
         </div>
         <button
           type="button"
-          onClick={() => signOut()}
+          onClick={handleSignOut}
           className=" py-2 text-whiteblock mx-10 font-semibold text-xl  hover:bg-white hover:text-black"
         >
           Logout

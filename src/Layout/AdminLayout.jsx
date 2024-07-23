@@ -4,31 +4,36 @@ import React from "react";
 const AdminLayout = ({ children, title = "Admin Panel" }) => {
   const sideBarItem = [
     {
-      name: "Dashboard",
-      link: "/admin",
+      name: "CR",
+      link: "/admin/CR",
       icon: "bxs-dashboard",
     },
     {
-      name: "Products",
-      link: "/admin/products",
+      name: "CIT",
+      link: "/admin/CIT",
       icon: "bx bx-package",
     },
     {
-      name: "Orders",
-      link: "/admin/order",
-      icon: "bx bx-cart",
+      name: "FLM",
+      link: "/admin/FLM",
+      icon: "bx bx-wallet-alt",
+    },
+    {
+      name: "SLM",
+      link: "/admin/SLM",
+      icon: "bx bxs-wallet-alt",
     },
     {
       name: "Users",
       link: "/admin/users",
-      icon: "bx bx-group",
+      icon: "bx bx-user",
     },
   ];
   return (
     <>
-      <div>
+      <div className="flex flex-row">
         <SideBar sideBarItem={sideBarItem} title={title} />
-        {children}
+        <div className="ml-[200px] w-full">{children}</div>
       </div>
     </>
   );

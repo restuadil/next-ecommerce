@@ -4,14 +4,12 @@ import {
   retrieveData,
   updateData,
 } from "@/lib/firebase/service";
-import bcrypt from "bcrypt";
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
-    const users = await retrieveData("users");
-    const data = users.map((user) => {
-      delete user.password;
-      return user;
+    const response = await retrieveData("cit");
+    const data = response.map((res) => {
+      return res;
     });
     res.status(200).json({
       status: true,
@@ -21,7 +19,7 @@ export default async function handler(req, res) {
     });
   } else if (req.method === "PUT") {
     const { id, data } = req.body;
-    await updateData("users", id, data, (result) => {
+    await updateData("cit", id, data, (result) => {
       if (result) {
         res.status(200).json({
           status: true,
@@ -38,7 +36,7 @@ export default async function handler(req, res) {
     });
   } else if (req.method === "DELETE") {
     const { id } = req.body;
-    await deleteData("users", id, (result) => {
+    await deleteData("cit", id, (result) => {
       if (result) {
         res.status(200).json({
           status: true,
@@ -55,11 +53,7 @@ export default async function handler(req, res) {
     });
   } else if (req.method === "POST") {
     const { data } = req.body;
-    if (data.password) {
-      const hashedPassword = await bcrypt.hash(data.password, 10);
-      data.password = hashedPassword;
-    }
-    await addData("users", data, (result) => {
+    await addData("cit", data, (result) => {
       if (result) {
         res.status(200).json({
           status: true,
